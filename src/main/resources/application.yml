@@ -1,1 +1,27 @@
-
+server:
+  port: 8855
+spring:
+  application:
+    name: Test Gerimedica
+  mvc:
+    format:
+      date: MM-dd-yyyy
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:/gerimedica-assignment
+    username: sa
+    password: sa
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  profiles:
+    active: gerimedica-assignment-profile
