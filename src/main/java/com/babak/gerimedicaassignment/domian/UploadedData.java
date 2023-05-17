@@ -21,10 +21,10 @@ public class UploadedData {
     @Column(length = 8000)
     private String longDescription;
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "MM-dd-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy", timezone = "Brazil/East")
     private Date fromDate;
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern = "MM-dd-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy", timezone = "Brazil/East")
     private Date toDate;
     private Integer sortingPriority;
 
