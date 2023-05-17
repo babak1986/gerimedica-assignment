@@ -114,7 +114,7 @@ class GerimedicaAssignmentApplicationTests {
         Assertions.assertEquals("ZIB001", jsonObject.getString("codeListCode"));
         Assertions.assertEquals("61086009", jsonObject.getString("code"));
         Assertions.assertEquals("Polsslag onregelmatig", jsonObject.getString("displayValue"));
-        Assertions.assertEquals("01-01-2019", ((Date)jsonObject.get("fromDate")));
+        Assertions.assertEquals("01-01-2019", jsonObject.get("fromDate"));
         Assertions.assertEquals("2", jsonObject.getString("sortingPriority"));
     }
 

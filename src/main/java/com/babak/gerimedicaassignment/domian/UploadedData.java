@@ -20,11 +20,11 @@ public class UploadedData {
     private String displayValue;
     @Column(length = 8000)
     private String longDescription;
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private Date fromDate;
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private Date toDate;
     private Integer sortingPriority;
 
