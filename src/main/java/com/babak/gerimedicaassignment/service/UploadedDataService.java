@@ -7,7 +7,6 @@ import com.babak.gerimedicaassignment.util.CsvUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -46,7 +45,7 @@ public class UploadedDataService {
                 });
             }
             result.setSuccess(true);
-        } catch (IOException e) {
+        } catch (Exception e) {
             result.setMessage(e.getMessage());
         }
         return result;
