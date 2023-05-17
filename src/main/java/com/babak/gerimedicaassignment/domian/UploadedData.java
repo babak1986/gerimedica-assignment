@@ -1,5 +1,6 @@
 package com.babak.gerimedicaassignment.domian;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -20,8 +21,10 @@ public class UploadedData {
     @Column(length = 8000)
     private String longDescription;
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private Date fromDate;
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private Date toDate;
     private Integer sortingPriority;
 

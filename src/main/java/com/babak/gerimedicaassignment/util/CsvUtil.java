@@ -16,6 +16,7 @@ public class CsvUtil {
     public static List<UploadedData> loadCsvIntoEntityList(InputStream inputStream) {
         try {
             CsvSchema csvSchema = CsvSchema.emptySchema().withHeader();
+
             CsvMapper csvMapper = new CsvMapper();
             MappingIterator<UploadedData> rows = csvMapper.readerFor(UploadedData.class)
                     .with(csvSchema).readValues(inputStream);
