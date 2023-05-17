@@ -1,6 +1,7 @@
 package com.babak.gerimedicaassignment.controller;
 
 import com.babak.gerimedicaassignment.domian.UploadedData;
+import com.babak.gerimedicaassignment.model.UploadFileResult;
 import com.babak.gerimedicaassignment.service.UploadedDataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,9 +19,8 @@ public class UploadedDataController {
     }
 
     @PostMapping(value = "upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity upload(@RequestPart("file") MultipartFile file) {
-        service.upload(file);
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity<UploadFileResult> upload(@RequestPart("file") MultipartFile file) {
+        return new ResponseEntity(service.upload(file), HttpStatus.OK);
     }
 
     @GetMapping("fetchAll")

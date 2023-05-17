@@ -1,6 +1,7 @@
 package com.babak.gerimedicaassignment.service;
 
 import com.babak.gerimedicaassignment.domian.UploadedData;
+import com.babak.gerimedicaassignment.model.UploadFileResult;
 import com.babak.gerimedicaassignment.repository.UploadedDataRepository;
 import com.babak.gerimedicaassignment.util.CsvUtil;
 import org.springframework.stereotype.Service;
@@ -26,21 +27,29 @@ public class UploadedDataService {
         return repository.findAll();
     }
 
-    public void upload(MultipartFile file) {
+    public UploadFileResult upload(MultipartFile file) {
+        UploadFileResult result = new UploadFileResult();
         try {
             List<UploadedData> uploadedData = CsvUtil.loadCsvIntoEntityList(file.getInputStream());
             if (repository.count() == 0) {
                 repository.saveAll(uploadedData);
+                result.setRowsUploaded(uploadedData.size());
             } else {
                 uploadedData.forEach(ud -> {
                     if (findByCode(ud.getCode()) == null) {
                         repository.save(ud);
+                        result.setRowsUploaded(result.getRowsUploaded() + 1);
+                    } else {
+                        result.setRowsFailed(result.getRowsFailed() + 1);
+                        result.getDuplicatedCodes().add(ud.getCode());
                     }
                 });
             }
+            result.setSuccess(true);
         } catch (IOException e) {
-            e.printStackTrace();
+            result.setMessage(e.getMessage());
         }
+        return result;
     }
 
     public void deleteAll() {
